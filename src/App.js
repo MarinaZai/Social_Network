@@ -4,24 +4,22 @@ import Header from './components/Header/header';
 import Navbar from './components/Navbar/navbar';
 import Profile from './components/Profile/profile';
 import Dialogs from './components/Dialogs/Dialogs';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 
 
 function App(props) {
-  console.log(props)
   return (
-    <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar />
-      <div className='app-wrapper-content'>
+        <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/dialogs' element={<Dialogs dialogData={props.dialogs} messagesData={props.messages} />} />
-            <Route path='/profile' element={<Profile postsData={props.posts} />} /> 
+            <Route path='/dialogs' element={<Dialogs state={props.state.dialogsPage} />} />
+            <Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>} />
           </Routes>
         </div>
       </div>
-    </BrowserRouter>);
+   );
 }
 
 export default App;
